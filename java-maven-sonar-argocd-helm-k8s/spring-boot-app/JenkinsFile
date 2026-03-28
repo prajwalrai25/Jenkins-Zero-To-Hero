@@ -20,17 +20,20 @@ pipeline {
       }
     }
     stage('SonarCloud Analysis') {
-            steps {
-                withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
-                    sh '''
-                    mvn sonar:sonar \
-                      -Dsonar.projectKey=prajwalrai25_Jenkins-Zero-To-Hero \
-                      -Dsonar.organization=prajwalrai25 \
-                      -Dsonar.host.url=https://sonarcloud.io \
-                      -Dsonar.login=$SONAR_TOKEN
-                    '''
-                }
+    steps {
+        dir('java-maven-sonar-argocd-helm-k8s/spring-boot-app') {
+            withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
+                sh '''
+                mvn clean verify sonar:sonar \
+                  -Dsonar.projectKey=prajwalrai25_Jenkins-Zero-To-Hero \
+                  -Dsonar.organization=prajwalrai25 \
+                  -Dsonar.host.url=https://sonarcloud.io \
+                  -Dsonar.login=$SONAR_TOKEN
+                '''
             }
+        }
+    }
+}
         }
     stage('Build and Push Docker Image') {
       environment {
