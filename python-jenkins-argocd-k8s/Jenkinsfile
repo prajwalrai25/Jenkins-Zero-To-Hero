@@ -60,7 +60,7 @@ pipeline {
                         git config user.email "your-email@gmail.com"
                         cd python-jenkins-argocd-k8s/deploy
                         cat deploy.yaml
-                        sed -i '' "s/32/${BUILD_NUMBER}/g" deploy.yaml
+                        sed -i "s|image: prajj29/cicd-e2e:.*|image: prajj29/cicd-e2e:${BUILD_NUMBER}|g" deploy.yaml
                         cat deploy.yaml
                         git add deploy.yaml
                         git commit -m 'Updated the deploy yaml | Jenkins Pipeline'
