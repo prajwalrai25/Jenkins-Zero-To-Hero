@@ -42,7 +42,7 @@ pipeline {
         stage('Checkout K8S manifest SCM'){
             steps {
                 git url: 'https://github.com/prajwalrai25/Jenkins-Zero-To-Hero',
-                    branch: main
+                    branch: 'main'
             
             }
         }
