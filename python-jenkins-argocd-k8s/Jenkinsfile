@@ -58,6 +58,7 @@ pipeline {
                         sh '''
                         git config user.name "prajwalrai25"
                         git config user.email "your-email@gmail.com"
+                        cd python-jenkins-argocd-k8s/deploy
                         cat deploy.yaml
                         sed -i '' "s/32/${BUILD_NUMBER}/g" deploy.yaml
                         cat deploy.yaml
