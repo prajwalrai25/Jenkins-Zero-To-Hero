@@ -1,3 +1,4 @@
+@Library('shared-library') _
 pipeline {
     
     agent any 
@@ -16,13 +17,7 @@ pipeline {
 
         stage('Build Docker'){
             steps{
-                script{
-                    sh '''
-                    echo 'Buid Docker Image'
-                    cd python-jenkins-argocd-k8s
-                    docker build -t prajj29/cicd-e2e:${BUILD_NUMBER} .
-                    '''
-                }
+                dockerImage("prajj29/cicd-e2e:${BUILD_NUMBER}")
             }
         }
 
