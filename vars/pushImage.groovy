@@ -5,3 +5,4 @@ def call(String imageName) {
     docker push ${imageName}
     """
   }
+}
