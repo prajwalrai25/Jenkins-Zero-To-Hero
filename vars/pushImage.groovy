@@ -4,3 +4,4 @@ def call(String imageName) {
     echo "push to repo"
     docker push imageName
     '''
+  }
